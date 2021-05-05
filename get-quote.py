@@ -1,4 +1,6 @@
 import random
+
+
 def primary():
 
     User_input = input("Would you like to \"add\" or \"delete\" a quote?")
@@ -11,24 +13,31 @@ def primary():
         with open("C:\\Users\Admin\OneDrive\Projekte\Atom Projekte\Python\Github\quotes.txt", "r") as f:
             lines = f.readlines()
             User_input = input("Which line would you like to delete?")
+            User_input = User_input.strip("-")
 
-            if User_input.isnumeric():
-                User_input = int(User_input)
-                if User_input <= len(lines):
-                    del(lines[User_input - 1])
-                else:
-                    print("Sorry you can't delete a line that doesn't exist...")
+        if "-" in User_input:
+            print(User_input)
+            two_numbers = list(map(int, User_input.split("-")))
+            print(two_numbers)
+            if max(User_input) <= len(lines):
 
+
+        if User_input.isnumeric():
+            User_input = int(User_input)
+            if User_input <= len(lines):
+                del(lines[User_input - 1])
                 with open("C:\\Users\Admin\OneDrive\Projekte\Atom Projekte\Python\Github\quotes.txt", "w") as f:
                     for line in lines:
                         f.writelines(line)
-                    else:
-                        print("You have to input a number!")
             else:
-                print("I can't understand that...")
+                print("Sorry you can't delete a line that doesn't exist...")
+        else:
+            print("You have to input a number!")
+    else:
+        print("I can't understand that...")
 
 
-#    with open("C:\\Users\Admin\OneDrive\Projekte\Atom Projekte\Python\Github\quotes.txt", "w") as f:
+    # with open("C:\\Users\Admin\OneDrive\Projekte\Atom Projekte\Python\Github\quotes.txt", "w") as f:
         # for line in lines:
         # if line.strip("\n") != "This has been added!":
         # f.write(line)
